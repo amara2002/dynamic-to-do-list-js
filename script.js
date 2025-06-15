@@ -12,32 +12,32 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Create list item (li)
+        // Create a new list item
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create Remove button
+        // Create the Remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
-        removeBtn.className = "remove-btn";
+        removeBtn.classList.add('remove-btn'); // ✅ Proper use of classList.add
 
-        // Event listener for removing task
+        // Assign onclick event to remove the task
         removeBtn.onclick = function () {
             taskList.removeChild(li);
         };
 
-        // Append button to li and li to list
+        // Append the button to li, and li to the task list
         li.appendChild(removeBtn);
         taskList.appendChild(li);
 
-        // Clear input
+        // Clear the input field
         taskInput.value = "";
     }
 
-    // Event listener for Add button
+    // Add task on button click
     addButton.addEventListener('click', addTask);
 
-    // Event listener for pressing Enter in the input field
+    // Add task on pressing "Enter"
     taskInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
