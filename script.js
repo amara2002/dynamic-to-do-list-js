@@ -1,13 +1,13 @@
 // Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', () => {
     // Select DOM elements
-    const addButton = document.getElementById('add-task-btn'); // Add Task button
-    const taskInput = document.getElementById('task-input');   // Task input field
-    const taskList = document.getElementById('task-list');     // UL for task list
+    const addButton = document.getElementById('add-task-btn');
+    const taskInput = document.getElementById('task-input');
+    const taskList = document.getElementById('task-list');
 
     // Function to add a new task
     function addTask() {
-        const taskText = taskInput.value.trim(); // Get input and trim spaces
+        const taskText = taskInput.value.trim();
 
         // Validate input
         if (taskText === '') {
@@ -15,41 +15,37 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Create new list item
+        // Create list item for the task
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create remove button
+        // Create Remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
         removeBtn.className = 'remove-btn';
 
-        // Remove task on button click
+        // Event to remove task
         removeBtn.onclick = () => {
             taskList.removeChild(li);
         };
 
-        // Add remove button to list item
+        // Append remove button to task item
         li.appendChild(removeBtn);
 
-        // Add task to list
+        // Append task item to task list
         taskList.appendChild(li);
 
-        // Clear input
+        // Clear input field
         taskInput.value = '';
     }
 
     // Add task on button click
     addButton.addEventListener('click', addTask);
 
-    // Add task on pressing Enter key
+    // Add task on Enter key press
     taskInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             addTask();
         }
     });
-
-    // Optional: Call addTask on load (if required by instruction)
-    // Uncomment below if needed:
-    // addTask();
 });
